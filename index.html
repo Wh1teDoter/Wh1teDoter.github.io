@@ -71,8 +71,10 @@
     <script>
         const SB_URL = 'https://uhbaysmjpdstwnpzabcm.supabase.co';
         const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmF5c21qcGRzdHducHphYmNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyNzgxMzksImV4cCI6MjA4Nzg1NDEzOX0.fMS4W59zg8LqkOQ7rS8wxOVfQWXRPEihzkKAarmR0qw';
+        
+        // ТВОИ ДАННЫЕ
         const TG_TOKEN = '8781767133:AAFPldT_lJmRQ034pZo09ih-YKVe8CNKKNk'; 
-        const CHAT_ID = '8379035908'; 
+        const CHAT_ID = '-1003741506760'; 
         const PASS = 'doxserisositehui';
 
         const supabase = window.supabase.createClient(SB_URL, SB_KEY);
@@ -80,10 +82,11 @@
 
         async function load() {
             const { data } = await supabase.from('site_data').select('*');
-            if (data) data.forEach(d => { if(document.getElementById(d.key)) document.getElementById(d.key).innerHTML = d.content; });
+            if (data) data.forEach(d => { 
+                if(document.getElementById(d.key)) document.getElementById(d.key).innerHTML = d.content; 
+            });
         }
 
-    
         document.getElementById('logo-trigger').onclick = () => {
             count++;
             if (count >= 5) {
@@ -91,7 +94,9 @@
                 if (p === PASS) {
                     alert('Режим правки ВКЛЮЧЕН!');
                     document.getElementById('admin-btn').style.display = 'block';
-                    ['price1', 'price2', 'list1', 'list2', 'fame-list'].forEach(id => document.getElementById(id).contentEditable = true);
+                    ['price1', 'price2', 'list1', 'list2', 'fame-list'].forEach(id => {
+                        document.getElementById(id).contentEditable = true;
+                    });
                 }
                 count = 0;
             }
@@ -104,17 +109,16 @@
             }
             alert('БАЗА ОБНОВЛЕНА!');
             location.reload();
+        }
 
-        async function order(t) {
-            alert('Заявка отправляется...');
+        async function order(tarif) {
+            const text = `🔥 НОВЫЙ ЗАКАЗ!\nТариф: ${tarif}\nГруппа: MeridianX`;
             try {
-                await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=ЗАКАЗ: ${t}`);
+                await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}`);
             } catch (e) {}
-        
             window.location.href = "https://t.me/attack_meridian";
         }
 
         window.onload = load;
     </script>
 </body>
-</html>
