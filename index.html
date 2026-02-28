@@ -8,46 +8,22 @@
     <style>
         body { margin: 0; padding: 0; background-color: #0a0514; color: #ffffff; font-family: 'Segoe UI', sans-serif; font-weight: 700; overflow-x: hidden; }
         header { padding: 40px; text-align: center; border-bottom: 2px solid #2d1b4e; background-color: #0d071a; }
-        
-        .logo { 
-            font-size: 42px; font-weight: 900; letter-spacing: 8px; text-transform: uppercase; 
-            cursor: pointer; user-select: none; transition: 0.2s; display: inline-block;
-        }
+        .logo { font-size: 42px; font-weight: 900; letter-spacing: 8px; text-transform: uppercase; cursor: pointer; user-select: none; transition: 0.2s; display: inline-block; }
         .logo:active { transform: scale(0.9); color: #8b5cf6; }
-        
         .pricing { display: flex; justify-content: center; gap: 40px; padding: 60px 10%; flex-wrap: wrap; }
-        .card { 
-            background-color: #120a24; border: 2px solid #2d1b4e; border-radius: 20px; padding: 45px; 
-            width: 340px; display: flex; flex-direction: column; justify-content: space-between; 
-            min-height: 500px; box-sizing: border-box; transition: all 0.4s; position: relative;
-        }
+        .card { background-color: #120a24; border: 2px solid #2d1b4e; border-radius: 20px; padding: 45px; width: 340px; display: flex; flex-direction: column; justify-content: space-between; min-height: 500px; box-sizing: border-box; transition: all 0.4s; }
         .card:hover { transform: translateY(-15px); background-color: #1a0f35; box-shadow: 0 0 40px rgba(139, 92, 246, 0.4); border-color: #8b5cf6; }
-        
-        .btn { 
-            display: block; padding: 20px; border-radius: 12px; font-weight: 900; 
-            text-align: center; text-decoration: none; text-transform: uppercase; 
-            transition: 0.3s; cursor: pointer; background: transparent; margin-top: 20px;
-        }
+        .btn { display: block; padding: 20px; border-radius: 12px; font-weight: 900; text-align: center; text-decoration: none; text-transform: uppercase; transition: 0.3s; cursor: pointer; background: transparent; margin-top: 20px; }
         .btn-p { border: 2px solid #8b5cf6; color: #8b5cf6; }
         .btn-p:hover { background: #8b5cf6; color: #fff; box-shadow: 0 0 25px #8b5cf6; }
         .btn-d { border: 2px solid #ef4444; color: #ef4444; }
         .btn-d:hover { background: #ef4444; color: #fff; box-shadow: 0 0 25px #ef4444; }
-
         .fame-section { background-color: #0d071a; padding: 80px 10%; text-align: center; border-top: 2px solid #2d1b4e; }
         .fame-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 50px; }
-        .fame-item { 
-            padding: 15px 30px; border: 2px solid #2d1b4e; border-radius: 12px; color: #a78bfa; 
-            font-size: 18px; font-weight: 800; transition: 0.3s; text-decoration: none; display: inline-block;
-        }
+        .fame-item { padding: 15px 30px; border: 2px solid #2d1b4e; border-radius: 12px; color: #a78bfa; font-size: 18px; font-weight: 800; transition: 0.3s; text-decoration: none; display: inline-block; }
         .fame-item:hover { border-color: #8b5cf6; color: #fff; background: rgba(139, 92, 246, 0.2); transform: scale(1.05); }
-
-        #admin-btn { 
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: none; 
-            background: #22c55e; color: white; padding: 20px 40px; 
-            border-radius: 15px; cursor: pointer; font-weight: 900; z-index: 9999; border: none; 
-            box-shadow: 0 0 30px rgba(34, 197, 94, 0.6); text-transform: uppercase; letter-spacing: 2px;
-        }
-        [contenteditable="true"] { outline: 3px dashed #22c55e !important; background: rgba(34, 197, 94, 0.1) !important; cursor: text; }
+        #admin-btn { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: none; background: #22c55e; color: white; padding: 20px 40px; border-radius: 15px; cursor: pointer; font-weight: 900; z-index: 9999; border: none; box-shadow: 0 0 30px rgba(34, 197, 94, 0.6); text-transform: uppercase; }
+        [contenteditable="true"] { outline: 3px dashed #22c55e !important; background: rgba(34, 197, 94, 0.1) !important; }
     </style>
 </head>
 <body>
@@ -59,12 +35,11 @@
     <div class="pricing">
         <div class="card" style="border-top: 8px solid #8b5cf6;">
             <div>
-                <p style="color: #8b5cf6; font-size: 22px; letter-spacing: 4px; font-weight: 900; margin-bottom: 10px;">PROTECTION</p>
-                <div id="price1" style="font-size: 70px; margin: 30px 0; font-weight: 900;">10$</div>
-                <ul id="list1" style="list-style: none; padding: 0; font-size: 19px; line-height: 2.4; color: #cbd5e1;">
+                <p style="color: #8b5cf6; font-size: 22px; letter-spacing: 4px; font-weight: 900;">PROTECTION</p>
+                <div id="price1" style="font-size: 70px; margin: 30px 0;">10$</div>
+                <ul id="list1" style="list-style: none; padding: 0; font-size: 19px; line-height: 2.4;">
                     <li>— Защита от доксеров</li>
                     <li>— Защита от осинтеров</li>
-                    <li>— Решение конфликтов</li>
                 </ul>
             </div>
             <div class="btn btn-p" onclick="order('PROTECTION')">Заказать</div>
@@ -72,12 +47,10 @@
 
         <div class="card" style="border-top: 8px solid #ef4444;">
             <div>
-                <p style="color: #ef4444; font-size: 22px; letter-spacing: 4px; font-weight: 900; margin-bottom: 10px;">TERMINATION</p>
-                <div id="price2" style="font-size: 70px; margin: 30px 0; font-weight: 900;">15$</div>
-                <ul id="list2" style="list-style: none; padding: 0; font-size: 19px; line-height: 2.4; color: #cbd5e1;">
-                    <li>— Удаление Шерлоков</li>
-                    <li>— Удаление Векторов</li>
-                    <li>— Удаление Фан Статов</li>
+                <p style="color: #ef4444; font-size: 22px; letter-spacing: 4px; font-weight: 900;">TERMINATION</p>
+                <div id="price2" style="font-size: 70px; margin: 30px 0;">15$</div>
+                <ul id="list2" style="list-style: none; padding: 0; font-size: 19px; line-height: 2.4;">
+                    <li>— Удаление данных</li>
                     <li>— Ликвидация ботов</li>
                 </ul>
             </div>
@@ -86,86 +59,62 @@
     </div>
 
     <section class="fame-section">
-        <div style="font-size: 32px; letter-spacing: 10px; color: #8b5cf6; font-weight: 900; text-transform: uppercase;">FAME LIST</div>
+        <div style="font-size: 32px; color: #8b5cf6; font-weight: 900;">FAME LIST</div>
         <div class="fame-grid" id="fame-list">
             <a href="https://t.me/attack_meridian" class="fame-item">@attack_meridian</a>
             <a href="https://t.me/meridianV2" class="fame-item">@meridianV2</a>
-            <a href="https://t.me/pravos1avniy" class="fame-item">@pravos1avniy</a>
         </div>
     </section>
 
-    <button id="admin-btn" onclick="saveData()">💾 СОХРАНИТЬ В БАЗУ ДАННЫХ</button>
+    <button id="admin-btn" onclick="saveData()">💾 СОХРАНИТЬ В БАЗУ</button>
 
     <script>
-        // КОНФИГУРАЦИЯ (ТВОИ ДАННЫЕ ВПИСАНЫ)
         const SB_URL = 'https://uhbaysmjpdstwnpzabcm.supabase.co';
         const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmF5c21qcGRzdHducHphYmNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyNzgxMzksImV4cCI6MjA4Nzg1NDEzOX0.fMS4W59zg8LqkOQ7rS8wxOVfQWXRPEihzkKAarmR0qw';
-        
         const TG_TOKEN = '8781767133:AAFPldT_lJmRQ034pZo09ih-YKVe8CNKKNk'; 
         const CHAT_ID = '8379035908'; 
         const PASS = 'doxserisositehui';
 
         const supabase = window.supabase.createClient(SB_URL, SB_KEY);
-        let clickCount = 0;
-        let lastClickTime = 0;
+        let count = 0;
 
-        // ЗАГРУЗКА ДАННЫХ
-        async function loadContent() {
-            const { data, error } = await supabase.from('site_data').select('*');
-            if (data) {
-                data.forEach(item => {
-                    const element = document.getElementById(item.key);
-                    if (element) element.innerHTML = item.content;
-                });
-            }
+        async function load() {
+            const { data } = await supabase.from('site_data').select('*');
+            if (data) data.forEach(d => { if(document.getElementById(d.key)) document.getElementById(d.key).innerHTML = d.content; });
         }
 
-        // ВХОД В АДМИНКУ (5 КЛИКОВ)
-        document.getElementById('logo-trigger').addEventListener('click', () => {
-            const now = Date.now();
-            if (now - lastClickTime > 1000) clickCount = 0; // Сброс если кликаешь редко
-            lastClickTime = now;
-            clickCount++;
-
-            if (clickCount === 5) {
-                const input = prompt('PASSWORD:');
-                if (input === PASS) {
-                    alert('ADMIN MODE ON. Теперь ты можешь менять цены и списки прямо на сайте.');
+    
+        document.getElementById('logo-trigger').onclick = () => {
+            count++;
+            if (count >= 5) {
+                let p = prompt('Пароль:');
+                if (p === PASS) {
+                    alert('Режим правки ВКЛЮЧЕН!');
                     document.getElementById('admin-btn').style.display = 'block';
-                    ['price1', 'price2', 'list1', 'list2', 'fame-list'].forEach(id => {
-                        document.getElementById(id).contentEditable = true;
-                    });
+                    ['price1', 'price2', 'list1', 'list2', 'fame-list'].forEach(id => document.getElementById(id).contentEditable = true);
                 }
-                clickCount = 0;
+                count = 0;
             }
-        });
+        };
 
-        // СОХРАНЕНИЕ
         async function saveData() {
-            const elements = ['price1', 'price2', 'list1', 'list2', 'fame-list'];
-            for (const id of elements) {
-                const htmlContent = document.getElementById(id).innerHTML;
-                await supabase.from('site_data').upsert({ key: id, content: htmlContent }, { onConflict: 'key' });
+            const ids = ['price1', 'price2', 'list1', 'list2', 'fame-list'];
+            for (let id of ids) {
+                await supabase.from('site_data').upsert({ key: id, content: document.getElementById(id).innerHTML }, { onConflict: 'key' });
             }
-            alert('ДАННЫЕ ОБНОВЛЕНЫ В БАЗЕ!');
+            alert('БАЗА ОБНОВЛЕНА!');
             location.reload();
-        }
 
-        // ЗАКАЗ
-        async function order(tarif) {
-            const msg = `🚀 НОВЫЙ ЗАКАЗ!\nТариф: ${tarif}\nID заказчика: С сайта`;
-            const url = `https://api.telegram.org/bot${TG_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`;
-            
+        async function order(t) {
+            alert('Заявка отправляется...');
             try {
-                await fetch(url);
-                alert('ЗАЯВКА ОТПРАВЛЕНА! Оператор свяжется с вами.');
-                window.location.href = "https://t.me/attack_meridian";
-            } catch (err) {
-                alert('Ошибка отправки. Проверь токен бота!');
-            }
+                await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=ЗАКАЗ: ${t}`);
+            } catch (e) {}
+        
+            window.location.href = "https://t.me/attack_meridian";
         }
 
-        window.onload = loadContent;
+        window.onload = load;
     </script>
 </body>
 </html>
