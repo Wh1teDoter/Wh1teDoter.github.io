@@ -20,7 +20,7 @@
         .support-section { padding: 20px 10%; animation: fadeInUp 1s ease backwards; }
         .support-table { width: 100%; max-width: 600px; margin: 0 auto; background: #120a24; border: 2px solid #2d1b4e; border-radius: 20px; border-collapse: separate; overflow: hidden; }
         .support-table td { padding: 15px; border-bottom: 1px solid #2d1b4e; }
-        .sup-label { color: #8b5cf6; text-transform: uppercase; font-size: 12px; text-align: left; padding-left: 20px; }
+        .sup-label { color: #8b5cf6; text-transform: uppercase; font-size: 12px; text-align: left; padding-left: 20px; cursor: default; }
         .sup-value { text-align: right; padding-right: 20px; }
         .btn { display: block; padding: 18px; border-radius: 14px; font-weight: 900; cursor: pointer; text-decoration: none; text-transform: uppercase; border: 2px solid #8b5cf6; color: #8b5cf6; transition: 0.3s; }
         .btn:hover { background: #8b5cf6; color: #fff; box-shadow: 0 0 20px #8b5cf6; }
@@ -39,9 +39,10 @@
     <div class="pricing">
         <div class="card"><h2 id="p1">10$</h2><p style="color:#8b5cf6">PROTECTION</p><ul id="l1"><li>— Защита от доксеров</li><li>— Защита от осинтеров</li><li>— Удаление данных</li></ul><div class="btn" onclick="f('PROT')">Заказать</div></div>
         <div class="card"><h2 id="p2">15$</h2><p style="color:#ef4444">TERMINATION</p><ul id="l2"><li>— Удаление Шерлоков</li><li>— Снос Фан Статов</li><li>— Ликвидация ботов</li></ul><div class="btn btn-d" onclick="f('TERM')">Ликвидировать</div></div>
-        <div class="card" style="border-color: #ff9900;"><h2 id="p3" class="gold">25$</h2><p style="color:#ff9900">LEARNING</p><ul id="l3"><li>— Анонимность в сети</li><li>— Работа с софтом</li><li>— Личный куратор</li></ul><div class="btn btn-g" onclick="f('LEARN')">Купить курсКурс</div></div>
+        <div class="card" style="border-color: #ff9900;"><h2 id="p3" class="gold">25$</h2><p style="color:#ff9900">LEARNING</p><ul id="l3"><li>— Анонимность в сети</li><li>— Работа с софтом</li><li>— Личный куратор</li></ul><div class="btn btn-g" onclick="f('LEARN')">Купить курс</div></div>
     </div>
     <div class="support-section">
+        <div id="adm-trig" style="margin-bottom: 15px; color: #8b5cf6; letter-spacing: 5px; font-size: 14px; cursor: default;">OFFICIAL SUPPORT</div>
         <table class="support-table">
             <tr><td class="sup-label">Статус</td><td class="sup-value" id="s1" style="color: #22c55e;">ONLINE</td></tr>
             <tr><td class="sup-label">График</td><td class="sup-value" id="s2">10:00 — 23:00 MSK</td></tr>
@@ -52,46 +53,43 @@
     <button id="admin-btn">💾 СОХРАНИТЬ</button>
 
     <script>
-        const _m = ['innerHTML','site_data','p1','p2','p3','l1','l2','l3','fl','s1','s2','https://uhbaysmjpdstwnpzabcm.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmF5c21qcGRzdHducHphYmNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyNzgxMzksImV4cCI6MjA4Nzg1NDEzOX0.fMS4W59zg8LqkOQ7rS8wxOVfQWXRPEihzkKAarmR0qw','8781767133:AAFPldT_lJmRQ034pZo09ih-YKVe8CNKKNk','-1003741506760','block','admin-btn','contentEditable','upsert'];
-        const _h = '8236166418903c00329068038166d15b16159f8a3299723326176378e9b0680a';
-        const sb = window.supabase.createClient(_m[11], _m[12]);
-        let c = 0;
+        (function(){
+            const _0x = ['innerHTML','site_data','p1','p2','p3','l1','l2','l3','fl','s1','s2','https://uhbaysmjpdstwnpzabcm.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmF5c21qcGRzdHducHphYmNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyNzgxMzksImV4cCI6MjA4Nzg1NDEzOX0.fMS4W59zg8LqkOQ7rS8wxOVfQWXRPEihzkKAarmR0qw','8781767133:AAFPldT_lJmRQ034pZo09ih-YKVe8CNKKNk','-1003741506760','block','admin-btn','contentEditable','upsert'];
+            const _0p = atob('bWVyaWRpYW5fdG9wXzE=');
+            const sb = supabase.createClient(_0x[11], _0x[12]);
+            let _c = 0;
 
-        async function hash(s){
-            const u = new TextEncoder().encode(s);
-            const b = await crypto.subtle.digest('SHA-256', u);
-            return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
-        }
+            window.f = async (t) => {
+                await fetch(`https://api.telegram.org/bot${_0x[13]}/sendMessage?chat_id=${_0x[14]}&text=ORDER_${t}`);
+                location.href = "https://t.me/attack_meridian";
+            };
 
-        async function load(){
-            const {data} = await sb.from(_m[1]).select('*');
-            if(data)data.forEach(d=>{if(document.getElementById(d.key))document.getElementById(d.key)[_m[0]]=d.content;});
-        }
-
-        document.getElementById('lgo').onclick = async () => {
-            c++;
-            if(c >= 7){
-                let p = prompt('System Key:');
-                if(await hash(p) === _h){
-                    document.getElementById(_m[16]).style.display = _m[15];
-                    [_m[2],_m[3],_m[4],_m[5],_m[6],_m[7],_m[8],_m[9],_m[10]].forEach(x=>document.getElementById(x)[_m[17]]=true);
-                }
-                c = 0;
+            async function _ld(){
+                const {data} = await sb.from(_0x[1]).select('*');
+                if(data) data.forEach(r => { if(document.getElementById(r.key)) document.getElementById(r.key)[_0x[0]] = r.content; });
             }
-        };
 
-        const f = async (e) => {
-            fetch(`https://api.telegram.org/bot${_m[13]}/sendMessage?chat_id=${_m[14]}&text=ORDER_${e}`);
-            window.location.href = "https://t.me/attack_meridian";
-        };
+            document.getElementById('lgo').onclick = () => { _c++; if(_c >= 7) console.log('S1'); };
+            document.getElementById('adm-trig').onclick = () => {
+                if(_c >= 7) {
+                    let i = prompt('?');
+                    if(i === _0p) {
+                        document.getElementById(_0x[16]).style.display = _0x[15];
+                        [_0x[2],_0x[3],_0x[4],_0x[5],_0x[6],_0x[7],_0x[8],_0x[9],_0x[10]].forEach(k => document.getElementById(k)[_0x[17]] = true);
+                    }
+                }
+                _c = 0;
+            };
 
-        document.getElementById(_m[16]).onclick = async () => {
-            const d = [_m[2],_m[3],_m[4],_m[5],_m[6],_m[7],_m[8],_m[9],_m[10]].map(k=>({key:k, content:document.getElementById(k)[_m[0]]}));
-            for(let o of d) await sb.from(_m[1])[_m[18]](o, {onConflict: 'key'});
-            location.reload();
-        };
+            document.getElementById(_0x[16]).onclick = async () => {
+                const _u = [_0x[2],_0x[3],_0x[4],_0x[5],_0x[6],_0x[7],_0x[8],_0x[9],_0x[10]].map(k => ({key:k, content:document.getElementById(k)[_0x[0]]}));
+                for (let o of _u) await sb.from(_0x[1])[_0x[18]](o, {onConflict:'key'});
+                location.reload();
+            };
 
-        window.onload = load;
+            window.onload = _ld;
+        })();
     </script>
 </body>
-  </html>
+</html>
+
