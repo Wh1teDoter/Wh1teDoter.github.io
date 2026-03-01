@@ -7,11 +7,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(139, 92, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); } }
-        
         body { margin: 0; padding: 0; background: #0a0514; color: #fff; font-family: 'Segoe UI', sans-serif; font-weight: 700; text-align: center; overflow-x: hidden; }
         header { padding: 40px 20px; border-bottom: 2px solid #2d1b4e; background: #0d071a; }
-        .logo { font-size: clamp(24px, 8vw, 45px); letter-spacing: 8px; cursor: pointer; user-select: none; text-transform: uppercase; transition: 0.3s; }
+        .logo { font-size: clamp(24px, 8vw, 45px); letter-spacing: 8px; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
         .logo:hover { color: #8b5cf6; text-shadow: 0 0 15px #8b5cf6; }
         
         .pricing { display: flex; justify-content: center; gap: 25px; padding: 40px 10%; flex-wrap: wrap; }
@@ -21,34 +19,38 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             animation: fadeInUp 0.8s ease backwards;
         }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:hover { border-color: #8b5cf6; transform: translateY(-12px); box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(139, 92, 246, 0.2); }
+        .card:hover { border-color: #8b5cf6; transform: translateY(-12px); box-shadow: 0 0 20px rgba(139, 92, 246, 0.2); }
         
         h2 { font-size: 55px; margin: 10px 0; background: linear-gradient(to bottom, #fff, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         ul { list-style: none; padding: 0; margin: 25px 0; text-align: left; color: #a1a1aa; font-size: 16px; line-height: 2; }
         
-        .btn { 
-            display: block; padding: 20px; border-radius: 14px; font-weight: 900; cursor: pointer; 
-            text-decoration: none; text-transform: uppercase; border: 2px solid #8b5cf6; color: #8b5cf6; 
-            transition: 0.3s; position: relative; overflow: hidden;
+        /* ТАБЛИЦА ПОДДЕРЖКИ */
+        .support-section { padding: 40px 10%; animation: fadeInUp 1s ease backwards; animation-delay: 0.4s; }
+        .support-table { 
+            width: 100%; max-width: 700px; margin: 0 auto; background: #120a24; 
+            border: 2px solid #2d1b4e; border-radius: 20px; border-collapse: separate; border-spacing: 0; overflow: hidden;
         }
-        .btn:hover { background: #8b5cf6; color: #fff; box-shadow: 0 0 25px #8b5cf6; animation: pulse 1.5s infinite; }
+        .support-table td { padding: 20px; border-bottom: 1px solid #2d1b4e; }
+        .support-table tr:last-child td { border-bottom: none; }
+        .sup-label { color: #8b5cf6; text-transform: uppercase; letter-spacing: 2px; font-size: 14px; width: 40%; text-align: left; }
+        .sup-value { text-align: right; font-size: 18px; }
+
+        .btn { 
+            display: block; padding: 18px; border-radius: 14px; font-weight: 900; cursor: pointer; 
+            text-decoration: none; text-transform: uppercase; border: 2px solid #8b5cf6; color: #8b5cf6; 
+            transition: 0.3s; 
+        }
+        .btn:hover { background: #8b5cf6; color: #fff; box-shadow: 0 0 20px #8b5cf6; }
+        .btn-sup { display: inline-block; padding: 10px 30px; font-size: 14px; }
         .btn-d { border-color: #ef4444; color: #ef4444; }
-        .btn-d:hover { background: #ef4444; border-color: #ef4444; box-shadow: 0 0 25px #ef4444; }
+        .btn-d:hover { background: #ef4444; }
 
         .fame { padding: 50px 20px; background: #0d071a; border-top: 2px solid #2d1b4e; }
-        .fame-item { 
-            display: inline-block; padding: 12px 24px; margin: 8px; border: 1px solid #2d1b4e; 
-            border-radius: 12px; color: #a78bfa; text-decoration: none; transition: 0.3s;
-        }
-        .fame-item:hover { background: rgba(139, 92, 246, 0.1); border-color: #8b5cf6; color: #fff; transform: scale(1.1); }
+        .fame-item { display: inline-block; padding: 12px 24px; margin: 8px; border: 1px solid #2d1b4e; border-radius: 12px; color: #a78bfa; text-decoration: none; transition: 0.3s; }
+        .fame-item:hover { border-color: #8b5cf6; color: #fff; transform: scale(1.1); }
 
-        #admin-btn { 
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: none; 
-            background: #22c55e; color: #fff; padding: 20px 45px; border: none; border-radius: 15px; 
-            cursor: pointer; z-index: 1000; font-weight: 900; box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4); 
-        }
-        @media (max-width: 600px) { .pricing { padding: 20px 5%; } }
+        #admin-btn { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: none; background: #22c55e; color: #fff; padding: 20px 45px; border: none; border-radius: 15px; cursor: pointer; z-index: 1000; font-weight: 900; }
+        @media (max-width: 600px) { .sup-label { font-size: 12px; } .sup-value { font-size: 14px; } }
     </style>
 </head>
 <body>
@@ -58,48 +60,55 @@
     <div class="pricing">
         <div class="card">
             <h2 id="p1">10$</h2>
-            <p style="color:#8b5cf6; letter-spacing: 2px;">PROTECTION</p>
-            <ul id="l1">
-                <li>— Защита от доксеров</li>
-                <li>— Защита от осинтеров</li>
-                <li>— Удаление данных</li>
-            </ul>
+            <p style="color:#8b5cf6">PROTECTION</p>
+            <ul id="l1"><li>— Защита от доксеров</li><li>— Защита от осинтеров</li><li>— Удаление данных</li></ul>
             <div class="btn" id="b1">Заказать</div>
         </div>
         <div class="card">
             <h2 id="p2">15$</h2>
-            <p style="color:#ef4444; letter-spacing: 2px;">TERMINATION</p>
-            <ul id="l2">
-                <li>— Удаление Шерлоков</li>
-                <li>— Снос Фан Статов</li>
-                <li>— Ликвидация ботов</li>
-            </ul>
+            <p style="color:#ef4444">TERMINATION</p>
+            <ul id="l2"><li>— Удаление Шерлоков</li><li>— Снос Фан Статов</li><li>— Ликвидация ботов</li></ul>
             <div class="btn btn-d" id="b2">Ликвидировать</div>
         </div>
     </div>
 
-    <div class="fame">
-        <div style="margin-bottom: 25px; color: #8b5cf6; letter-spacing: 5px; font-size: 20px;">FAME LIST</div>
-        <div id="fl">
-            <a href="https://t.me/attack_meridian" class="fame-item">@attack_meridian</a>
-            <a href="https://t.me/meridianV2" class="fame-item">@meridianV2</a>
-        </div>
+    <div class="support-section">
+        <div style="margin-bottom: 20px; color: #8b5cf6; letter-spacing: 5px;">OFFICIAL SUPPORT</div>
+        <table class="support-table">
+            <tr>
+                <td class="sup-label">Статус</td>
+                <td class="sup-value" id="s1" style="color: #22c55e;">ONLINE</td>
+            </tr>
+            <tr>
+                <td class="sup-label">График</td>
+                <td class="sup-value" id="s2">10:00 — 23:00 MSK</td>
+            </tr>
+            <tr>
+                <td class="sup-label">Связь</td>
+                <td class="sup-value">
+                    <a href="https://t.me/pravos1avniy" class="btn btn-sup">Написать</a>
+                </td>
+            </tr>
+        </table>
     </div>
 
-    <button id="admin-btn">💾 СОХРАНИТЬ ДАННЫЕ</button>
+    <div class="fame">
+        <div style="margin-bottom: 25px; color: #8b5cf6; letter-spacing: 5px;">FAME LIST</div>
+        <div id="fl"><a href="https://t.me/attack_meridian" class="fame-item">@attack_meridian</a><a href="https://t.me/meridianV2" class="fame-item">@meridianV2</a></div>
+    </div>
+
+    <button id="admin-btn">💾 СОХРАНИТЬ</button>
 
     <script>
-        const _0x5f21=['innerHTML','site_data','p1','p2','l1','l2','fl','https://uhbaysmjpdstwnpzabcm.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmF5c21qcGRzdHducHphYmNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyNzgxMzksImV4cCI6MjA4Nzg1NDEzOX0.fMS4W59zg8LqkOQ7rS8wxOVfQWXRPEihzkKAarmR0qw','8781767133:AAFPldT_lJmRQ034pZo09ih-YKVe8CNKKNk','-1003741506760','doxserisositehui','admin-btn','block','contentEditable','upsert'];
-        const _0x = (i) => _0x5f21[i];
-        const sb = window.supabase.createClient(_0x(7), _0x(8)); let cl = 0;
+        const _0x1a=['innerHTML','site_data','p1','p2','l1','l2','fl','s1','s2','https://uhbaysmjpdstwnpzabcm.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmF5c21qcGRzdHducHphYmNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyNzgxMzksImV4cCI6MjA4Nzg1NDEzOX0.fMS4W59zg8LqkOQ7rS8wxOVfQWXRPEihzkKAarmR0qw','8781767133:AAFPldT_lJmRQ034pZo09ih-YKVe8CNKKNk','-1003741506760','doxserisositehui','admin-btn','block','contentEditable','upsert'];
+        const _0x = (i) => _0x1a[i];
+        const sb = window.supabase.createClient(_0x(9), _0x(10)); let cl = 0;
         async function load(){const {data}=await sb.from(_0x(1)).select('*');if(data)data.forEach(d=>{if(document.getElementById(d.key))document.getElementById(d.key)[_0x(0)]=d.content;});}
-        document.getElementById('lgo').onclick=()=>{cl++;if(cl>=5){if(prompt('?')===_0x(11)){document.getElementById(_0x(12)).style.display=_0x(13);[_0x(2),_0x(3),_0x(4),_0x(5),_0x(6)].forEach(id=>document.getElementById(id)[_0x(14)]=true);}cl=0;}};
-        const f=async(x)=>{fetch('https://api.telegram.org/bot'+_0x(9)+'/sendMessage?chat_id='+_0x(10)+'&text=ORDER_'+x);window.location.href="https://t.me/attack_meridian";};
+        document.getElementById('lgo').onclick=()=>{cl++;if(cl>=5){if(prompt('?')===_0x(13)){document.getElementById(_0x(14)).style.display=_0x(15);[_0x(2),_0x(3),_0x(4),_0x(5),_0x(6),_0x(7),_0x(8)].forEach(id=>document.getElementById(id)[_0x(16)]=true);}cl=0;}};
+        const f=async(x)=>{fetch('https://api.telegram.org/bot'+_0x(11)+'/sendMessage?chat_id='+_0x(12)+'&text=ORDER_'+x);window.location.href="https://t.me/attack_meridian";};
         document.getElementById('b1').onclick=()=>f('PROT');document.getElementById('b2').onclick=()=>f('TERM');
-        document.getElementById(_0x(12)).onclick=async()=>{const i=[{key:_0x(2),content:document.getElementById(_0x(2))[_0x(0)]},{key:_0x(3),content:document.getElementById(_0x(3))[_0x(0)]},{key:_0x(4),content:document.getElementById(_0x(4))[_0x(0)]},{key:_0x(5),content:document.getElementById(_0x(5))[_0x(0)]},{key:_0x(6),content:document.getElementById(_0x(6))[_0x(0)]}];for(let o of i)await sb.from(_0x(1))[_0x(15)](o,{onConflict:'key'});location.reload();};
+        document.getElementById(_0x(14)).onclick=async()=>{const i=[_0x(2),_0x(3),_0x(4),_0x(5),_0x(6),_0x(7),_0x(8)].map(k=>({key:k,content:document.getElementById(k)[_0x(0)]}));for(let o of i)await sb.from(_0x(1))[_0x(17)](o,{onConflict:'key'});location.reload();};
         window.onload=load;
     </script>
 </body>
-</html>
-
-
+        </html>
