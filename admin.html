@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>MERIDIAN | CONTROL</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { background: #07030d; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; }
+        .box { max-width: 600px; margin: 0 auto; background: #120a24; padding: 30px; border-radius: 20px; border: 1px solid #2d1b4e; }
+        h1 { color: #8b5cf6; text-transform: uppercase; letter-spacing: 5px; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #0d071a; border: 1px solid #2d1b4e; color: #fff; border-radius: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: #8b5cf6; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #7c3aed; box-shadow: 0 0 15px #8b5cf6; }
+        .hidden { display: none; }
+        .item { border-bottom: 1px solid #2d1b4e; padding: 15px 0; text-align: left; }
+    </style>
+</head>
+<body>
+    <div id="login" class="box">
+        <h1>ACCESS</h1>
+        <input type="password" id="pass" placeholder="Password">
+        <button onclick="auth()">UNBLOCK PANEL</button>
+    </div>
+
+    <div id="editor" class="box hidden">
+        <h1>PANEL</h1>
+        <div id="fields"></div>
+        <button onclick="save()" style="background: #22c55e;">SAVE UPDATES</button>
+    </div>
+
+    <script>
+        const _s = ['https://uhbaysmjpdstwnpzabcm.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmF5c21qcGRzdHducHphYmNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyNzgxMzksImV4cCI6MjA4Nzg1NDEzOX0.fMS4W59zg8LqkOQ7rS8wxOVfQWXRPEihzkKAarmR0qw','site_data'];
+        const sb = supabase.createClient(_s[0], _s[1]);
+        const keys = ['p1','p2','p3','l1','l2','l3','s1','s2','fl'];
+
+        function auth() {
+            if(document.getElementById('pass').value === 'meridian_top_1') {
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('editor').classList.remove('hidden');
+                load();
+            } else { alert('Error'); }
+        }
+
+        async function load() {
+            const {data} = await sb.from(_s[2]).select('*');
+            const container = document.getElementById('fields');
+            keys.forEach(k => {
+                const val = data.find(d => d.key === k)?.content || '';
+                container.innerHTML += `<div class="item"><strong>Key: ${k}</strong><textarea id="in-${k}">${val}</textarea></div>`;
+            });
+        }
+
+        async function save() {
+            for(let k of keys) {
+                const val = document.getElementById(`in-${k}`).value;
+                await sb.from(_s[2]).upsert({key: k, content: val}, {onConflict: 'key'});
+            }
+            alert('SAVED!');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
